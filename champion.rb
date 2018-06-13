@@ -23,7 +23,8 @@ class Champion
       puts "Name: #{champ.name}"
       puts "Description: #{champ.description}"
       puts "Image-Link: #{champ.image_url}"
-      puts "-----------------------------"
+      puts "--------------------------------------------------------------------"
+      puts 
     end
   end
 
