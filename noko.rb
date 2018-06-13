@@ -9,11 +9,12 @@ class ScraperClass
     data = Nokogiri::HTML(open("https://www.giantbomb.com/league-of-legends/3030-24024/characters/"))
 
     data.css("div#wiki-3030-24024-characters li").each do |champ|
+      break if champ.css("h3.title").text == ""
+
       new_champ = Champion.new
       new_champ.name = champ.css("h3.title").text
-      new_champ.description = champ.css("p").text
-      #new_champ.image_url = champ.css("div.img img").attribute("src").value # produces an error because the attribute method
-      # can't throw an excpetion if there is no 'src' attribute within the tag.
+      new_champ.description = champ.css("p").text.gsub("  ", "")
+      new_champ.image_url = champ.css("div.img img").attribute("src").value 
     end
 
   end
